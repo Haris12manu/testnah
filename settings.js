@@ -1,15 +1,15 @@
 module.exports = {
-    uiPort: process.env.PORT || 1880, // พอร์ตที่ Render ใช้
+    uiPort: process.env.PORT || 1880, // ใช้พอร์ตจาก Render หรือค่าเริ่มต้น
     flowFile: 'flows.json', // ไฟล์ Flow
-    credentialSecret: process.env.NODE_RED_CREDENTIAL_SECRET || "your-secret-key",
-    httpNodeRoot: '/ui', // URL สำหรับ Dashboard (แก้ให้เป็น /ui)
+    credentialSecret: process.env.NODE_RED_CREDENTIAL_SECRET || "your-secret-key", // คีย์ Credential
+    httpNodeRoot: '/ui', // ตั้ง Root Path สำหรับ Node-RED Dashboard
     httpServer: {
         middleware: (req, res, next) => {
             if (req.originalUrl === '/') {
-                // Redirect ไปยังหน้า Dashboard ที่ต้องการ
-                res.redirect('/ui');
+                // Redirect Root Path ไปยัง /ui/ui/
+                res.redirect('/ui/ui/');
             } else {
-                next(); // ให้ผ่านไปตามปกติ
+                next(); // ให้ทำงานตามเส้นทางปกติ
             }
         }
     },
@@ -19,13 +19,5 @@ module.exports = {
             metrics: false,
             audit: false
         }
-    },
-
-    editorTheme: {
-        projects: {
-            enabled: true
-        }
     }
-    
-    
 };
