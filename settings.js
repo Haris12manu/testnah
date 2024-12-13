@@ -1,7 +1,7 @@
 module.exports = {
     uiPort: process.env.PORT || 1880, // พอร์ตที่ Render ใช้
     flowFile: 'flows.json', // ไฟล์ Flow
-    credentialSecret: process.env.NODE_RED_CREDENTIAL_SECRET || "your-secret-key", // คีย์ Credential
+    credentialSecret: process.env.NODE_RED_CREDENTIAL_SECRET || "your-secret-key",
     httpNodeRoot: '/ui', // URL สำหรับ Dashboard (แก้ให้เป็น /ui)
     httpServer: {
         middleware: (req, res, next) => {
@@ -19,5 +19,13 @@ module.exports = {
             metrics: false,
             audit: false
         }
+    },
+
+    editorTheme: {
+        projects: {
+            enabled: true
+        }
     }
+    
+    
 };
