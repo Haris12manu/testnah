@@ -9,7 +9,7 @@
         "start": "node-red -s settings.js"
     },
     "engines": {
-        "node": ">=14.0.0"
+        "node": "18.x"
     },
     "node-red": {
         "settings": {
