@@ -1,25 +1,25 @@
 module.exports = {
     uiPort: process.env.PORT || 1880, // ใช้ PORT จาก Render
-    flowFile: 'flows.json', // ระบุไฟล์ flow
-    credentialSecret: process.env.NODE_RED_CREDENTIAL_SECRET || "my-secret-key",
-    httpAdminRoot: '/admin', // หน้าสำหรับจัดการ Flow
-    httpNodeRoot: '/', // Root Node สำหรับ API/ฟีเจอร์อื่น
+    flowFile: 'flows.json', // ระบุไฟล์ Flow ที่ใช้งาน
+    credentialSecret: process.env.NODE_RED_CREDENTIAL_SECRET || "my-secret-key", // ตั้งค่าคีย์ความปลอดภัย
+    httpAdminRoot: '/admin', // เปลี่ยน Root สำหรับหน้า Admin
+    httpNodeRoot: '/ui', // ตั้ง Root ของ Node-RED Dashboard
+    httpStatic: './public', // ไฟล์ Static (ถ้ามี)
+    httpServer: {
+        // ฟังก์ชันสำหรับ Redirect หน้า `/` ไปยัง `/ui`
+        middleware: (req, res, next) => {
+            if (req.originalUrl === '/') {
+                res.redirect('/ui'); // เปลี่ยนเส้นทางไปยัง /ui
+            } else {
+                next(); // ให้ทำงานตามเส้นทางปกติ
+            }
+        }
+    },
     logging: {
         console: {
             level: 'info',
             metrics: false,
             audit: false
-        }
-    },
-    httpStatic: './public', // โฟลเดอร์ Static ถ้ามี
-    httpServer: {
-        // ฟังก์ชัน Redirect
-        middleware: (req, res, next) => {
-            if (req.originalUrl === '/') {
-                res.redirect('/ui'); // Redirect ไปที่แดชบอร์ด
-            } else {
-                next(); // ถ้าไม่ใช่ `/` ให้ผ่านไปยัง endpoint อื่น
-            }
         }
     }
 };
