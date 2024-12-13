@@ -1,12 +1,15 @@
 {
-    "name": "t",
+    "name": "node-red-app",
     "description": "A Node-RED Project",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "dependencies": {
-        "node-red": "^2.1.0"  
+        "node-red": "^3.0.0"
     },
     "scripts": {
-        "start": "node-red" 
+        "start": "node-red -s settings.js flows.json"
+    },
+    "engines": {
+        "node": ">=14.0.0"
     },
     "node-red": {
         "settings": {
