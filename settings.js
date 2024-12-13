@@ -7,7 +7,7 @@ module.exports = {
         middleware: (req, res, next) => {
             if (req.originalUrl === '/') {
                 // Redirect ไปยังหน้า Dashboard ที่ต้องการ
-                res.redirect('ui/ui/#!/0?socketid=tRmHtBbbuq1X1-svAAAB');
+                res.redirect('/ui');
             } else {
                 next(); // ให้ผ่านไปตามปกติ
             }
